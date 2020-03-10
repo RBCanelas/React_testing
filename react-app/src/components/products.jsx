@@ -4,12 +4,10 @@ import Product from "./product";
 class Products extends Component {
   componentDidMount() {
     // called 3rd in mounting phase
-    console.log("Counters - componentDidMount");
   }
 
   componentDidUpdate() {
     // called during update phase along with render
-    console.log("Counters - componentDidUpdate");
   }
 
   render() {
@@ -21,11 +19,18 @@ class Products extends Component {
         >
           Reset
         </button>
+        <button
+          onClick={this.props.onAdd}
+          className="btn btn-primary btn-sm m-2"
+        >
+          Add
+        </button>
         {this.props.products.map(product => (
           <Product
             key={product.id}
             product={product}
             onIncrement={this.props.onIncrement}
+            onDecrement={this.props.onDecrement}
             onDelete={this.props.onDelete}
           />
         ))}

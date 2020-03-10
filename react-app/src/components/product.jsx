@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 
 class Product extends Component {
+  state = {
+    productName: Math.random()
+      .toString(36)
+      .substr(2, 5)
+  };
+
   componentDidMount() {
     // called 3rd in mounting phase
-    console.log("Counter - componentDidMount");
+    console.log(this.state.productName);
   }
 
   componentDidUpdate(prevProps, prevState) {
     // called during update phase along with render
-    console.log("Counter - componentDidUpdate");
-    console.log("Previous Props - ", prevProps);
-    console.log("Previous State - ", prevState);
     if (prevProps.product.count !== this.props.product.count) {
       // make ajax calls to request new data from server
     }
@@ -18,7 +21,6 @@ class Product extends Component {
 
   componentWillUnmount() {
     // can do cleanups here
-    console.log("Counter - componentWillUnmount");
   }
 
   render() {
@@ -27,9 +29,15 @@ class Product extends Component {
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
           onClick={() => this.props.onIncrement(this.props.product)}
-          className="btn btn-secondary btn-sm"
+          className="btn btn-secondary btn-sm m-2"
         >
-          Increment
+          +
+        </button>
+        <button
+          onClick={() => this.props.onDecrement(this.props.product)}
+          className="btn btn-secondary btn-sm m-2"
+        >
+          -
         </button>
         <button
           onClick={() => this.props.onDelete(this.props.product.id)}
@@ -37,6 +45,7 @@ class Product extends Component {
         >
           Delete
         </button>
+        <div className="navbar-brand"> {this.getProductName()} </div>
       </div>
     );
   }
@@ -49,7 +58,11 @@ class Product extends Component {
 
   formatCount() {
     const { count } = this.props.product;
-    return count === 0 ? "Zero" : count;
+    return count;
+  }
+
+  getProductName() {
+    return this.state.productName;
   }
 }
 

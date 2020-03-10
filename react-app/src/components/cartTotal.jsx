@@ -8,7 +8,7 @@ const CartTotal = props => {
         style={{ backgroundColor: "#e3f2fd" }}
       >
         <div className="navbar-brand">
-          Total Items{" "}
+          Total bogus item categories{" "}
           <span className="badge badge-pill badge-info">
             {props.totalProducts}
           </span>
